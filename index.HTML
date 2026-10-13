@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulce Encanto | Pastelería Artesanal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastelPink: '#ffccd5',
+                        pastelMint: '#d8f3dc',
+                        pastelVanilla: '#fefae0',
+                        pastelLavender: '#e9edc9',
+                        warmBrown: '#6f4e37',
+                        softGold: '#d4af37',
+                        brandRose: '#ffb5a7',
+                        brandCream: '#fff1e6'
+                    },
+                    fontFamily: {
+                        playfair: ['"Playfair Display"', 'serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fffaf7;
+            color: #4a4a4a;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: '"Playfair Display"', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fefae0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffb5a7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e09f91;
+        }
+    </style>
+</head>
+<body class="bg-pastelVanilla/30 min-h-screen flex flex-col selection:bg-pastelPink selection:text-warmBrown">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-full bg-pastelPink flex items-center justify-center text-warmBrown shadow-inner group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-cake-candles text-xl text-warmBrown"></i>
+                </div>
+                <div>
+                    <span class="font-playfair text-2xl font-bold text-warmBrown block leading-tight">Dulce Encanto</span>
+                    <span class="text-xs text-stone-500 tracking-wider uppercase font-medium">Pastelería Artesanal</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-stone-600">
+                <a href="#inicio" class="hover:text-warmBrown transition-colors">Inicio</a>
+                <a href="#categorias" class="hover:text-warmBrown transition-colors">Categorías</a>
+                <a href="#menu" class="hover:text-warmBrown transition-colors">Menú</a>
+                <a href="#ai-assistant" class="hover:text-warmBrown transition-colors flex items-center gap-1.5 text-rose-500 font-semibold">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Asistente IA
+                </a>
+                <a href="#contacto" class="hover:text-warmBrown transition-colors">Contacto</a>
+            </nav>
+
+            <!-- Actions (Cart & Mobile Menu Trigger) -->
+            <div class="flex items-center gap-4">
+                <!-- Cart Button -->
+                <button id="cart-btn" class="relative bg-pastelPink/50 hover:bg-pastelPink text-warmBrown p-3 rounded-full transition-colors flex items-center justify-center shadow-sm" aria-label="Abrir Carrito">
+                    <i class="fa-solid fa-basket-shopping text-lg"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-warmBrown text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold shadow">0</span>
+                </button>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-stone-700 p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-white border-b border-stone-200 shadow-lg py-4 px-6 flex flex-col gap-4 animate-fadeIn">
+            <a href="#inicio" class="mobile-link text-stone-700 hover:text-warmBrown font-medium py-2 border-b border-stone-100">Inicio</a>
+            <a href="#categorias" class="mobile-link text-stone-700 hover:text-warmBrown font-medium py-2 border-b border-stone-100">Categorías</a>
+            <a href="#menu" class="mobile-link text-stone-700 hover:text-warmBrown font-medium py-2 border-b border-stone-100">Menú</a>
+            <a href="#ai-assistant" class="mobile-link text-rose-500 font-semibold py-2 border-b border-stone-100 flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Asistente IA
+            </a>
+            <a href="#contacto" class="mobile-link text-stone-700 hover:text-warmBrown font-medium py-2">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative overflow-hidden bg-gradient-to-b from-pastelVanilla/60 to-pastelPink/30 py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="flex flex-col gap-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 bg-pastelMint text-stone-700 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider w-fit mx-auto md:mx-0 shadow-sm">
+                    <i class="fa-solid fa-heart text-rose-500">></i> 100% Artesanal & Natural
+                </div>
+                <h1 class="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-warmBrown leading-tight">
+                    Endulzamos tus momentos más <span class="text-rose-500 italic">especiales</span>
+                </h1>
+                <p class="text-stone-600 text-base sm:text-lg leading-relaxed">
+                    Cada pastel, tarta y postre es elaborado con amor, ingredientes de alta calidad y una pizca de magia. Descubre sabores que enamoran el alma.
+                </p>
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                    <a href="#menu" class="bg-warmBrown hover:bg-stone-800 text-white font-medium px-8 py-3.5 rounded-full shadow-md transition-all hover:shadow-lg flex items-center gap-2">
+                        Ver Menú <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#ai-assistant" class="bg-white hover:bg-stone-50 text-warmBrown border border-warmBrown/30 font-medium px-8 py-3.5 rounded-full transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-rose-500"></i> Preguntar a la IA
+                    </a>
+                </div>
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-stone-200/60 max-w-md mx-auto md:mx-0">
+                    <div>
+                        <span class="block font-playfair text-2xl font-bold text-warmBrown">+15</span>
+                        <span class="text-xs text-stone-500">Años de Tradición</span>
+                    </div>
+                    <div>
+                        <span class="block font-playfair text-2xl font-bold text-warmBrown">+50</span>
+                        <span class="text-xs text-stone-500">Recetas Únicas</span>
+                    </div>
+                    <div>
+                        <span class="block font-playfair text-2xl font-bold text-warmBrown">100%</span>
+                        <span class="text-xs text-stone-500">Felicidad</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="absolute -inset-4 bg-pastelPink/40 rounded-full blur-2xl -z-10 animate-pulse"></div>
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Pastel artesanal Dulce Encanto" class="rounded-3xl shadow-2xl object-cover w-full max-w-md h-[420px] border-4 border-white">
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categorias" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-warmBrown mb-3">Nuestras Categorías</h2>
+                <p class="text-stone-600">Explora nuestras deliciosas especialidades hechas para cada ocasión y antojo.</p>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div id="category-filters" class="flex flex-wrap items-center justify-center gap-3">
+                <button data-category="all" class="category-btn active px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-warmBrown text-white shadow-sm">
+                    Todos
+                </button>
+                <button data-category="cumpleanos" class="category-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-pastelVanilla hover:bg-pastelPink text-stone-700 shadow-sm">
+                    Pasteles de Cumpleaños
+                </button>
+                <button data-category="tartas" class="category-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-pastelVanilla hover:bg-pastelPink text-stone-700 shadow-sm">
+                    Tartas y Pays
+                </button>
+                <button data-category="cupcakes" class="category-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-pastelVanilla hover:bg-pastelPink text-stone-700 shadow-sm">
+                    Cupcakes
+                </button>
+                <button data-category="especiales" class="category-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-pastelVanilla hover:bg-pastelPink text-stone-700 shadow-sm">
+                    Sin Azúcar / Especiales
+                </button>
+                <button data-category="frios" class="category-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-pastelVanilla hover:bg-pastelPink text-stone-700 shadow-sm">
+                    Helados y Postres Fríos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu / Product Catalog Section -->
+    <section id="menu" class="py-16 bg-pastelVanilla/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-warmBrown mb-2">Nuestro Menú</h2>
+                    <p class="text-stone-600">Elige tus favoritos y agrégalos al carrito con un solo clic.</p>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products will be injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Pastry Assistant Section -->
+    <section id="ai-assistant" class="py-16 bg-white border-y border-stone-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-pastelPink/30 via-pastelLavender/30 to-pastelMint/30 rounded-3xl p-6 sm:p-10 shadow-lg border border-pastelPink/50">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-14 h-14 rounded-full bg-rose-500 text-white flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-playfair text-2xl sm:text-3xl font-bold text-warmBrown">Asistente Pastelero IA</h2>
+                        <p class="text-xs sm:text-sm text-stone-600">¿No sabes qué elegir? Pídele recomendaciones según tu evento u ocasión especial.</p>
+                    </div>
+                </div>
+
+                <!-- Chat Box Container -->
+                <div class="bg-white/90 backdrop-blur rounded-2xl p-4 sm:p-6 shadow-inner flex flex-col h-[380px]">
+                    <!-- Messages list -->
+                    <div id="chat-messages" class="flex-1 overflow-y-auto pr-2 space-y-4 mb-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-rose-400 text-white flex items-center justify-center text-xs flex-shrink-0 font-bold">IA</div>
+                            <div class="bg-pastelVanilla p-3.5 rounded-2xl rounded-tl-none text-stone-700 text-sm max-w-[80%] shadow-sm">
+                                ¡Hola! Soy tu pastelero virtual de Dulce Encanto. Dime, ¿para qué ocasión buscas un dulce hoy? (Ej: <i>"Busco un pastel de chocolate para un cumpleaños"</i> o <i>"¿Qué opción tienes sin azúcar?"</i>)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Suggestions -->
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <button onclick="sendQuickPrompt('Recomiéndame un pastel de chocolate para cumpleaños')" class="text-xs bg-stone-100 hover:bg-pastelPink/50 text-stone-700 px-3 py-1.5 rounded-full transition-colors border border-stone-200">
+                            🎂 Cumpleaños de chocolate
+                        </button>
+                        <button onclick="sendQuickPrompt('¿Qué opciones tienen sin azúcar?')" class="text-xs bg-stone-100 hover:bg-pastelPink/50 text-stone-700 px-3 py-1.5 rounded-full transition-colors border border-stone-200">
+                            🌾 Sin azúcar / saludable
+                        </button>
+                        <button onclick="sendQuickPrompt('Recomiéndame algo fresco y frutal')" class="text-xs bg-stone-100 hover:bg-pastelPink/50 text-stone-700 px-3 py-1.5 rounded-full transition-colors border border-stone-200">
+                            🍓 Fresco y frutal
+                        </button>
+                    </div>
+
+                    <!-- Input Form -->
+                    <form id="chat-form" class="flex gap-2">
+                        <input type="text" id="chat-input" placeholder="Escribe tu antojo u ocasión aquí..." class="flex-1 bg-stone-50 border border-stone-200 rounded-full px-4 py-3 text-sm focus:outline-none focus:border-rose-400 transition-colors">
+                        <button type="submit" class="bg-rose-500 hover:bg-rose-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md transition-colors flex-shrink-0" aria-label="Enviar mensaje">
+                            <i class="fa-solid fa-paper-plane text-sm"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-warmBrown text-stone-200 pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-pastelPink flex items-center justify-center text-warmBrown font-bold">
+                        <i class="fa-solid fa-cake-candles"></i>
+                    </div>
+                    <span class="font-playfair text-2xl font-bold text-white">Dulce Encanto</span>
+                </div>
+                <p class="text-stone-300 text-sm leading-relaxed">
+                    Haciendo más dulces tus días con repostería artesanal de primera calidad desde 2011.
+                </p>
+                <div class="flex items-center gap-3 text-lg">
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-pastelPink hover:text-warmBrown transition-colors flex items-center justify-center" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-pastelPink hover:text-warmBrown transition-colors flex items-center justify-center" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-pastelPink hover:text-warmBrown transition-colors flex items-center justify-center" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-playfair text-lg font-bold text-white mb-4">Horarios de Atención</h3>
+                <ul class="space-y-2 text-sm text-stone-300">
+                    <li class="flex justify-between"><span>Lunes - Viernes:</span> <span class="font-medium text-white">8:00 AM - 8:00 PM</span></li>
+                    <li class="flex justify-between"><span>Sábados:</span> <span class="font-medium text-white">9:00 AM - 9:00 PM</span></li>
+                    <li class="flex justify-between"><span>Domingos:</span> <span class="font-medium text-white">9:00 AM - 4:00 PM</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-playfair text-lg font-bold text-white mb-4">Enlaces Rápidos</h3>
+                <ul class="space-y-2 text-sm text-stone-300">
+                    <li><a href="#inicio" class="hover:text-pastelPink transition-colors">Inicio</a></li>
+                    <li><a href="#categorias" class="hover:text-pastelPink transition-colors">Categorías</a></li>
+                    <li><a href="#menu" class="hover:text-pastelPink transition-colors">Menú</a></li>
+                    <li><a href="#ai-assistant" class="hover:text-pastelPink transition-colors">Asistente IA</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-playfair text-lg font-bold text-white mb-4">Ubicación y Contacto</h3>
+                <ul class="space-y-3 text-sm text-stone-300">
+                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-location-dot mt-1 text-pastelPink"></i> <span>Calle de los Dulces #452, Col. Repostería, C.P. 14000</span></li>
+                    <li class="flex items-center gap-2.5"><i class="fa-solid fa-phone text-pastelPink"></i> <span>+57 (300) 123-4567</span></li>
+                    <li class="flex items-center gap-2.5"><i class="fa-solid fa-envelope text-pastelPink"></i> <span>pedidos@dulceencanto.com</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/10 pt-6 text-center text-xs text-stone-400">
+            &copy; 2026 Pastelería Dulce Encanto. Todos los derechos reservados. Hecho con amor 🍰
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Slide-over Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <!-- Backdrop -->
+        <div id="cart-backdrop" class="absolute inset-0 bg-stone-900/50 backdrop-blur-sm transition-opacity opacity-0"></div>
+
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div id="cart-panel" class="w-screen max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+                <!-- Header -->
+                <div class="p-6 bg-pastelVanilla/50 border-b border-stone-200 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-basket-shopping text-warmBrown text-xl"></i>
+                        <h2 class="font-playfair text-xl font-bold text-warmBrown">Tu Carrito de Compras</h2>
+                    </div>
+                    <button id="close-cart-btn" class="w-8 h-8 rounded-full bg-white hover:bg-stone-100 flex items-center justify-center text-stone-500 transition-colors shadow-sm">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Items List -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-stone-100">
+                    <!-- Dynamically populated items -->
+                </div>
+
+                <!-- Footer & Checkout -->
+                <div class="p-6 bg-stone-50 border-t border-stone-200">
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm text-stone-600">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="font-semibold text-stone-800">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-stone-600">
+                            <span>Envío estimado</span>
+                            <span class="font-semibold text-emerald-600">Gratis</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-bold text-warmBrown pt-2 border-t border-stone-200">
+                            <span>Total</span>
+                            <span id="cart-total">$0.00</span>
+                        </div>
+                    </div>
+                    <button id="checkout-btn" class="w-full bg-warmBrown hover:bg-stone-800 text-white font-medium py-3.5 rounded-full shadow-md transition-all flex items-center justify-center gap-2">
+                        <span>Finalizar Pedido</span> <i class="fa-solid fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal Notification -->
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center px-4 hidden">
+        <div class="absolute inset-0 bg-stone-900/60 backdrop-blur-sm"></div>
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl relative z-10 text-center animate-fadeIn transform scale-100">
+            <div class="w-20 h-20 bg-pastelMint text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-5 shadow-inner">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="font-playfair text-2xl font-bold text-warmBrown mb-2">¡Pedido Exitoso!</h3>
+            <p class="text-stone-600 text-sm mb-6">Tu orden ha sido recibida con éxito en Dulce Encanto. ¡Nuestros pasteleros ya se pusieron manos a la obra!</p>
+            <button id="close-success-btn" class="w-full bg-warmBrown hover:bg-stone-800 text-white font-medium py-3 rounded-full transition-colors">
+                Aceptar
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Product Catalog Data
+        const products = [
+            {
+                id: 1,
+                name: "Pastel Velvet Rojo Encanto",
+                category: "cumpleanos",
+                price: 38.00,
+                rating: 4.9,
+                reviews: 124,
+                image: "https://images.unsplash.com/photo-1586788224325-1d54751f845a?auto=format&fit=crop&w=500&q=80",
+                description: "Suave bizcocho rojo aterciopelado con capas de crema de queso mascarpone y toque de vainilla natural."
+            },
+            {
+                id: 2,
+                name: "Tarta Fina de Limón & Merengue",
+                category: "tartas",
+                price: 26.50,
+                rating: 4.8,
+                reviews: 98,
+                image: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=500&q=80",
+                description: "Base crujiente de mantequilla, crema ligera de limón siciliano y coronado con merengue italiano tostado."
+            },
+            {
+                id: 3,
+                name: "Caja de Cupcakes Moka & Chocolate",
+                category: "cupcakes",
+                price: 22.00,
+                rating: 4.7,
+                reviews: 156,
+                image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=500&q=80",
+                description: "Pack de 6 cupcakes esponjosos con frosting de café moka belga y chispas de cacao puro."
+            },
+            {
+                id: 4,
+                name: "Pastel de Chocolate Trufado",
+                category: "cumpleanos",
+                price: 42.00,
+                rating: 5.0,
+                reviews: 210,
+                image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=500&q=80",
+                description: "Para verdaderos amantes del chocolate: bizcocho húmedo de cacao con ganache semiamargo y trufas artesanales."
+            },
+            {
+                id: 5,
+                name: "Pay de Queso con Frutos Rojos",
+                category: "tartas",
+                price: 28.00,
+                rating: 4.9,
+                reviews: 112,
+                image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80",
+                description: "Cremoso pay de queso horneado al estilo clásico sobre base de galleta con compota de frambuesas y moras."
+            },
+            {
+                id: 6,
+                name: "Cupcakes de Vainilla & Pastel Unicornio",
+                category: "cupcakes",
+                price: 24.00,
+                rating: 4.8,
+                reviews: 89,
+                image: "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&w=500&q=80",
+                description: "Pack de 6 pastelitos decorados con buttercream pastel, destellos comestibles y aroma natural de vainilla bourbon."
+            },
+            {
+                id: 7,
+                name: "Pastel Vegano de Zanahoria & Nuez",
+                category: "especiales",
+                price: 34.00,
+                rating: 4.9,
+                reviews: 74,
+                image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=500&q=80",
+                description: "Sin azúcares refinados ni lácteos. Bizcocho jugoso de zanahoria orgánica, nueces tostadas y frosting de anacardos."
+            },
+            {
+                id: 8,
+                name: "Tarta Fría de Maracuyá & Mango",
+                category: "frios",
+                price: 30.00,
+                rating: 4.7,
+                reviews: 65,
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80",
+                description: "Postre frío y refrescante con mousse de maracuyá natural, coulis de mango tropical y base ligera de almendras."
+            },
+            {
+                id: 9,
+                name: "Pastel Keto de Chocolate & Avellana",
+                category: "especiales",
+                price: 36.50,
+                rating: 4.9,
+                reviews: 82,
+                image: "https://images.unsplash.com/photo-1571115177098-24c42ed204d0?auto=format&fit=crop&w=500&q=80",
+                description: "Bajo en carbohidratos, endulzado con fruta del monje, harina de almendra y trocitos de avellana tostada."
+            }
+        ];
+
+        // Shopping Cart State
+        let cart = [];
+
+        // DOM Elements
+        const productGrid = document.getElementById('product-grid');
+        const categoryFilters = document.querySelectorAll('.category-btn');
+        const cartBtn = document.getElementById('cart-btn');
+        const closeCartBtn = document.getElementById('close-cart-btn');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const cartPanel = document.getElementById('cart-panel');
+        const cartCount = document.getElementById('cart-count');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const successModal = document.getElementById('success-modal');
+        const closeSuccessBtn = document.getElementById('close-success-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Category Filtering
+            categoryFilters.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryFilters.forEach(b => {
+                        b.classList.remove('bg-warmBrown', 'text-white');
+                        b.classList.add('bg-pastelVanilla', 'text-stone-700');
+                    });
+                    btn.classList.remove('bg-pastelVanilla', 'text-stone-700');
+                    btn.classList.add('bg-warmBrown', 'text-white');
+
+                    const category = btn.getAttribute('data-category');
+                    if (category === 'all') {
+                        renderProducts(products);
+                    } else {
+                        const filtered = products.filter(p => p.category === category);
+                        renderProducts(filtered);
+                    }
+                });
+            });
+
+            // Cart Drawer Handlers
+            cartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartBackdrop.addEventListener('click', closeCart);
+
+            // Checkout Handlers
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) return;
+                closeCart();
+                successModal.classList.remove('hidden');
+                cart = [];
+                updateCartUI();
+            });
+
+            closeSuccessBtn.addEventListener('click', () => {
+                successModal.classList.add('hidden');
+            });
+
+            // Mobile Menu Toggle Handlers
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Chat Assistant Form Handler
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                appendUserMessage(text);
+                chatInput.value = '';
+                
+                // Simulate typing and response
+                setTimeout(() => {
+                    generateAIResponse(text);
+                }, 600);
+            });
+        }
+
+        // Render Product Catalog
+        function renderProducts(items) {
+            productGrid.innerHTML = '';
+            if (items.length === 0) {
+                productGrid.innerHTML = `<div class="col-span-full text-center py-12 text-stone-500">No se encontraron productos en esta categoría.</div>`;
+                return;
+            }
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col border border-stone-100 group";
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-[4/3] bg-stone-100">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/500x400/fefae0/6f4e37?text=Dulce+Encanto'">
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-xs font-semibold text-warmBrown shadow-sm flex items-center gap-1">
+                            <i class="fa-solid fa-star text-amber-400"></i> ${product.rating} <span class="text-stone-400">(${product.reviews})</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-playfair text-xl font-bold text-warmBrown mb-2 group-hover:text-rose-500 transition-colors">${product.name}</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-2">${product.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100">
+                            <span class="font-playfair text-2xl font-bold text-warmBrown">$${product.price.toFixed(2)}</span>
+                            <button onclick="addToCart(${product.id})" class="bg-warmBrown hover:bg-stone-800 text-white px-4 py-2.5 rounded-full text-sm font-medium transition-colors shadow-sm flex items-center gap-2">
+                                <i class="fa-solid fa-plus text-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+
+        // Category Filtering
+        categoryFilters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryFilters.forEach(b => {
+                    b.classList.remove('bg-warmBrown', 'text-white');
+                    b.classList.add('bg-pastelVanilla', 'text-stone-700');
+                });
+                btn.classList.remove('bg-pastelVanilla', 'text-stone-700');
+                btn.classList.add('bg-warmBrown', 'text-white');
+
+                const category = btn.getAttribute('data-category');
+                if (category === 'all') {
+                    renderProducts(products);
+                } else {
+                    const filtered = products.filter(p => p.category === category);
+                    renderProducts(filtered);
+                }
+            });
+        });
+
+        // Cart Management Functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCartUI();
+            openCart();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalCount;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-16 text-stone-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-stone-300"></i>
+                        <p class="text-sm">Tu carrito está vacío.</p>
+                    </div>
+                `;
+                cartSubtotal.textContent = '$0.00';
+                cartTotal.textContent = '$0.00';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+                const div = document.createElement('div');
+                div.className = "py-4 flex items-center gap-4";
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-2xl flex-shrink-0 bg-stone-100">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-playfair font-bold text-stone-800 text-sm truncate">${item.name}</h4>
+                        <span class="text-xs text-stone-500 block mb-1">$${item.price.toFixed(2)} c/u</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-xs text-stone-600 transition-colors">-</button>
+                            <span class="text-xs font-semibold w-5 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-xs text-stone-600 transition-colors">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-warmBrown text-sm block mb-2">$${(item.price * item.quantity).toFixed(2)}</span>
+                        <button onclick="removeFromCart(${item.id})" class="text-rose-400 hover:text-rose-600 text-xs transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+
+            cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+            cartTotal.textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        // Drawer Controls
+        function openCart() {
+            cartDrawer.classList.remove('hidden');
+            setTimeout(() => {
+                cartBackdrop.classList.remove('opacity-0');
+                cartPanel.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeCart() {
+            cartBackdrop.classList.add('opacity-0');
+            cartPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                cartDrawer.classList.add('hidden');
+            }, 300);
+        }
+
+        // AI Pastry Assistant Logic (Simulated intelligent responses)
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        function sendQuickPrompt(promptText) {
+            chatInput.value = promptText;
+            chatForm.dispatchEvent(new Event('submit'));
+        }
+
+        function appendUserMessage(msg) {
+            const div = document.createElement('div');
+            div.className = "flex items-start gap-3 justify-end";
+            div.innerHTML = `
+                <div class="bg-warmBrown text-white p-3.5 rounded-2xl rounded-tr-none text-sm max-w-[80%] shadow-sm">
+                    ${escapeHtml(msg)}
+                </div>
+                <div class="w-8 h-8 rounded-full bg-stone-300 text-stone-700 flex items-center justify-center text-xs flex-shrink-0 font-bold">Tú</div>
+            `;
+            chatMessages.appendChild(div);
+            scrollToBottom();
+        }
+
+        function appendAIMessage(msg) {
+            const div = document.createElement('div');
+            div.className = "flex items-start gap-3";
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-rose-400 text-white flex items-center justify-center text-xs flex-shrink-0 font-bold">IA</div>
+                <div class="bg-pastelVanilla p-3.5 rounded-2xl rounded-tl-none text-stone-700 text-sm max-w-[80%] shadow-sm leading-relaxed">
+                    ${msg}
+                </div>
+            `;
+            chatMessages.appendChild(div);
+            scrollToBottom();
+        }
+
+        function generateAIResponse(query) {
+            const q = query.toLowerCase();
+            let response = "";
+
+            if (q.includes('chocolate') || q.includes('cacao')) {
+                response = "¡Excelente elección! Para los amantes del chocolate te recomiendo nuestro <b>Pastel de Chocolate Trufado</b> o los <b>Cupcakes Moka & Chocolate</b>. Son intensos, cremosos y elaborados con chocolate belga.";
+            } else if (q.includes('cumpleaños') || q.includes('fiesta') || q.includes('celebración')) {
+                response = "¡Qué emocionante! Para cumpleaños nuestro <b>Pastel Velvet Rojo Encanto</b> o el <b>Pastel de Chocolate Trufado</b> son los favoritos absolutos de nuestros clientes. ¿Cuántas porciones necesitas?";
+            } else if (q.includes('sin azúcar') || q.includes('dieta') || q.includes('vegano') || q.includes('keto')) {
+                response = "¡Por supuesto! Pensando en todos tenemos el <b>Pastel Vegano de Zanahoria & Nuez</b> y el <b>Pastel Keto de Chocolate & Avellana</b>. Deliciosos, saludables y libres de azúcares refinados.";
+            } else if (q.includes('fresco') || q.includes('frutal') || q.includes('limón') || q.includes('mango') || q.includes('maracuyá')) {
+                response = "Para un toque refrescante te sugiero la <b>Tarta Fina de Limón & Merengue</b> o la <b>Tarta Fría de Maracuyá & Mango</b>. Tienen el balance perfecto entre dulce y cítrico.";
+            } else {
+                response = `Entiendo perfectamente tu antojo. Basado en lo que buscas, te sugiero explorar nuestra sección de <a href="#menu" class="text-rose-600 font-semibold underline">Menú completo</a> o probar nuestro <span class="font-semibold text-warmBrown">Pastel Velvet Rojo Encanto</span>. ¿Te gustaría agregarlo al carrito?`;
+            }
+
+            appendAIMessage(response);
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
+</body>
+</html>
